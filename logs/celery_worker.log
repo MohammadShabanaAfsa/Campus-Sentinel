@@ -1,0 +1,273 @@
+ 
+ -------------- celery@DESKTOP-3QOGP59 v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Windows-10-10.0.26200-SP0 2026-08-22 10:21:48
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         campus_sentinel:0x2b96d1c0510
+- ** ---------- .> transport:   redis://:**@localhost:6379/0
+- ** ---------- .> results:     redis://:**@localhost:6379/0
+- *** --- * --- .> concurrency: 8 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> ai_tasks         exchange=ai_tasks(direct) key=ai_tasks
+                .> alerts           exchange=alerts(direct) key=alerts
+                .> analytics        exchange=analytics(direct) key=analytics
+
+[tasks]
+  . app.services.tasks.ai_tasks.analyze_behavior
+  . app.services.tasks.alert_tasks.create_and_dispatch_alert
+  . app.services.tasks.alert_tasks.send_email_alert
+  . app.services.tasks.analytics_tasks.cleanup_old_snapshots
+  . app.services.tasks.analytics_tasks.compute_campus_safety_index
+  . app.services.tasks.analytics_tasks.send_daily_digest_email
+  . app.services.tasks.analytics_tasks.train_abd_models
+  . app.services.tasks.analytics_tasks.update_threat_predictions
+
+[2026-08-22 10:21:48,516: WARNING/MainProcess] C:\Users\Hp\OneDrive\Desktop\Documents\CAMPUS-SENTINEL\backend\.venv\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-08-22 10:21:48,528: INFO/MainProcess] Connected to redis://:**@localhost:6379/0
+[2026-08-22 10:21:48,528: WARNING/MainProcess] C:\Users\Hp\OneDrive\Desktop\Documents\CAMPUS-SENTINEL\backend\.venv\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-08-22 10:21:48,533: INFO/MainProcess] mingle: searching for neighbors
+[2026-08-22 10:21:49,569: INFO/MainProcess] mingle: all alone
+[2026-08-22 10:21:49,619: INFO/MainProcess] celery@DESKTOP-3QOGP59 ready.
+[2026-08-22 10:22:12,211: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b7a841cc-222a-4809-8889-a803bd55919c] received
+[2026-08-22 10:22:13,077: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b7a841cc-222a-4809-8889-a803bd55919c] succeeded in 0.875s: None
+[2026-08-22 10:22:14,980: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d1c52b5e-28fd-4c16-8fb5-fa68d1f6c7e1] received
+[2026-08-22 10:22:14,986: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d1c52b5e-28fd-4c16-8fb5-fa68d1f6c7e1] succeeded in 0.0s: None
+[2026-08-22 10:22:17,712: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[2837b8aa-5625-4653-807a-d5f3dc46519e] received
+[2026-08-22 10:22:17,718: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[2837b8aa-5625-4653-807a-d5f3dc46519e] succeeded in 0.0s: None
+[2026-08-22 10:22:20,334: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a49952f6-bfea-4b1f-a9e3-f37f41701fd1] received
+[2026-08-22 10:22:20,338: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a49952f6-bfea-4b1f-a9e3-f37f41701fd1] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:22:22,871: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[57f69f62-754c-43b7-beae-97506aca4483] received
+[2026-08-22 10:22:22,877: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[57f69f62-754c-43b7-beae-97506aca4483] succeeded in 0.0s: None
+[2026-08-22 10:22:25,337: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a3a78c84-735c-45ad-8e64-56da1315b9b5] received
+[2026-08-22 10:22:25,355: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a3a78c84-735c-45ad-8e64-56da1315b9b5] succeeded in 0.031000000002677552s: None
+[2026-08-22 10:22:25,359: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[528c807d-f408-4057-b10c-91072bed2f04] received
+[32m2026-08-22 10:22:25.370[0m | [34m[1mDEBUG   [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m30[0m - [34m[1m[ALERT_CREATE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 type=abnormal_movement severity=high threat_score=0.6[0m
+[32m2026-08-22 10:22:25.473[0m | [1mINFO    [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m76[0m - [1m[ALERT_CREATE] Alert 47d42169-f3bd-4a5e-bac3-416259cde0d5 stored in DB and broadcast: abnormal_movement | Camera: 1a32cb23-0820-4385-9ab5-de8e472e2c04[0m
+[2026-08-22 10:22:25,477: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[528c807d-f408-4057-b10c-91072bed2f04] succeeded in 0.11000000000058208s: None
+[2026-08-22 10:22:25,485: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[6521445c-3a83-41d0-b928-9cd51fb7004d] received
+[32m2026-08-22 10:22:25.497[0m | [34m[1mDEBUG   [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m24[0m - [34m[1m[ALERT_CREATE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 type=abnormal_movement suppressed by cooldown[0m
+[2026-08-22 10:22:25,499: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[6521445c-3a83-41d0-b928-9cd51fb7004d] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:22:25,505: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[7bd5dc99-8123-4ad0-a738-317c428d3ae0] received
+[32m2026-08-22 10:22:26.918[0m | [33m[1mWARNING [0m | [36mapp.services.email_service[0m:[36m_get_mail[0m:[36m35[0m - [33m[1mEmail not configured: 1 validation error for ConnectionConfig
+MAIL_FROM
+  value is not a valid email address: The part after the @-sign is not valid. It should have a period. [type=value_error, input_value='alerts@localhost', input_type=str][0m
+[32m2026-08-22 10:22:26.918[0m | [1mINFO    [0m | [36mapp.services.email_service[0m:[36msend_alert_email[0m:[36m125[0m - [1m[EMAIL-MOCK] Alert to ['admin@campus-sentinel.local']: Abnormal Movement — Person #1 (sudden_acceleration)[0m
+[2026-08-22 10:22:26,922: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[7bd5dc99-8123-4ad0-a738-317c428d3ae0] succeeded in 1.4220000000059372s: None
+[2026-08-22 10:22:28,682: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7608abec-d852-4cb0-aac5-2ecfaa26bc05] received
+[2026-08-22 10:22:28,687: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7608abec-d852-4cb0-aac5-2ecfaa26bc05] succeeded in 0.0s: None
+[2026-08-22 10:22:32,454: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a634ebf4-8eed-4068-8d29-8a87d25ffb62] received
+[2026-08-22 10:22:32,458: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a634ebf4-8eed-4068-8d29-8a87d25ffb62] succeeded in 0.0s: None
+[2026-08-22 10:22:35,695: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[df74a924-27a5-49a3-92b8-4cbe5faad675] received
+[2026-08-22 10:22:35,699: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[df74a924-27a5-49a3-92b8-4cbe5faad675] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:22:39,332: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b3f43947-619c-4eca-8a7c-a70aa0476005] received
+[2026-08-22 10:22:39,337: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b3f43947-619c-4eca-8a7c-a70aa0476005] succeeded in 0.0s: None
+[2026-08-22 10:22:42,551: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[979dbf10-3022-4ecc-b7d0-2675ca5747c8] received
+[2026-08-22 10:22:42,556: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[979dbf10-3022-4ecc-b7d0-2675ca5747c8] succeeded in 0.0s: None
+[2026-08-22 10:22:45,880: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[63f63264-4e8b-421d-8e38-d6749bff44c1] received
+[2026-08-22 10:22:45,885: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[63f63264-4e8b-421d-8e38-d6749bff44c1] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:22:49,209: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f1503317-b2d3-48d6-8a50-159e19da7037] received
+[2026-08-22 10:22:49,213: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f1503317-b2d3-48d6-8a50-159e19da7037] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:22:52,661: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e11fa0a6-0349-4f5f-99cd-0948b58a8870] received
+[2026-08-22 10:22:52,667: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e11fa0a6-0349-4f5f-99cd-0948b58a8870] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:22:56,548: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[c8b512d1-87db-45d0-81b1-74ed8d832df6] received
+[2026-08-22 10:22:56,558: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[c8b512d1-87db-45d0-81b1-74ed8d832df6] succeeded in 0.014999999999417923s: None
+[2026-08-22 10:23:00,128: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[99c57d07-a526-4836-acfa-d6c68198ac99] received
+[2026-08-22 10:23:00,133: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[99c57d07-a526-4836-acfa-d6c68198ac99] succeeded in 0.0s: None
+[2026-08-22 10:23:03,317: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[159da495-f57c-4dee-9187-0d6563f7c1cc] received
+[2026-08-22 10:23:03,322: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[159da495-f57c-4dee-9187-0d6563f7c1cc] succeeded in 0.0s: None
+[2026-08-22 10:23:06,475: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[90d1be87-2b3c-4a32-b676-04714d644f5d] received
+[2026-08-22 10:23:06,479: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[90d1be87-2b3c-4a32-b676-04714d644f5d] succeeded in 0.014999999999417923s: None
+[2026-08-22 10:23:10,260: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f55d80bd-9b1c-4d9e-95d4-2ca136487d5f] received
+[2026-08-22 10:23:10,265: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f55d80bd-9b1c-4d9e-95d4-2ca136487d5f] succeeded in 0.0s: None
+[2026-08-22 10:23:14,118: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[9b4b4f74-075f-4f44-81ce-3f544e96575b] received
+[2026-08-22 10:23:14,126: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[9b4b4f74-075f-4f44-81ce-3f544e96575b] succeeded in 0.0s: None
+[2026-08-22 10:23:18,079: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[9b7f86fa-bd2b-4257-8c29-92694da6c667] received
+[2026-08-22 10:23:18,083: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[9b7f86fa-bd2b-4257-8c29-92694da6c667] succeeded in 0.0s: None
+[2026-08-22 10:23:21,817: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1dd2f2e5-d092-4724-a30d-c676770b31d1] received
+[2026-08-22 10:23:21,821: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1dd2f2e5-d092-4724-a30d-c676770b31d1] succeeded in 0.0s: None
+[2026-08-22 10:23:25,195: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[fd0bc5a1-6487-48f0-8b1d-f0b1b8f1efde] received
+[2026-08-22 10:23:25,203: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[fd0bc5a1-6487-48f0-8b1d-f0b1b8f1efde] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:23:25,205: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[351fa951-c5f2-4770-8322-9c2a7d7c4058] received
+[32m2026-08-22 10:23:25.213[0m | [34m[1mDEBUG   [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m24[0m - [34m[1m[ALERT_CREATE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 type=abnormal_movement suppressed by cooldown[0m
+[2026-08-22 10:23:25,216: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[351fa951-c5f2-4770-8322-9c2a7d7c4058] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:23:28,613: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7306df91-b8fc-4b4d-bbbe-a31e6110a97a] received
+[2026-08-22 10:23:28,619: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7306df91-b8fc-4b4d-bbbe-a31e6110a97a] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:23:31,857: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[24fcc079-f4e5-4d28-9ee6-98e188b797a5] received
+[2026-08-22 10:23:31,861: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[24fcc079-f4e5-4d28-9ee6-98e188b797a5] succeeded in 0.0s: None
+[2026-08-22 10:23:35,172: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e57c48f6-cd66-4caf-8acd-0e9a314ceb1f] received
+[2026-08-22 10:23:35,176: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e57c48f6-cd66-4caf-8acd-0e9a314ceb1f] succeeded in 0.0s: None
+[2026-08-22 10:23:38,691: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[be3a1139-e8f2-4b32-9de7-d1a51daaf976] received
+[2026-08-22 10:23:38,695: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[be3a1139-e8f2-4b32-9de7-d1a51daaf976] succeeded in 0.0s: None
+[2026-08-22 10:23:42,227: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[65f1b482-3f56-4c83-86ac-a679e58d9e0a] received
+[2026-08-22 10:23:42,231: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[65f1b482-3f56-4c83-86ac-a679e58d9e0a] succeeded in 0.014999999999417923s: None
+[2026-08-22 10:23:45,590: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[51be0146-d556-4304-bcd8-19c001319d76] received
+[2026-08-22 10:23:45,595: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[51be0146-d556-4304-bcd8-19c001319d76] succeeded in 0.0s: None
+[2026-08-22 10:23:48,893: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5aac68d8-5c7d-42cb-ad1f-a6164dc215ae] received
+[2026-08-22 10:23:48,895: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5aac68d8-5c7d-42cb-ad1f-a6164dc215ae] succeeded in 0.0s: None
+[2026-08-22 10:23:52,256: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0ee4945c-ff89-40dc-88c1-40b7e44bc052] received
+[2026-08-22 10:23:52,260: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0ee4945c-ff89-40dc-88c1-40b7e44bc052] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:23:55,628: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0fa4c26f-ad3e-49af-822e-a381088b5dee] received
+[2026-08-22 10:23:55,631: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0fa4c26f-ad3e-49af-822e-a381088b5dee] succeeded in 0.0s: None
+[2026-08-22 10:23:59,181: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7fdea039-a310-45b1-a14e-f61be6a54c6e] received
+[2026-08-22 10:23:59,187: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7fdea039-a310-45b1-a14e-f61be6a54c6e] succeeded in 0.0s: None
+[2026-08-22 10:24:02,983: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f44552e4-f065-4c6d-8d1b-4a70ef4633f4] received
+[2026-08-22 10:24:02,992: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f44552e4-f065-4c6d-8d1b-4a70ef4633f4] succeeded in 0.0s: None
+[2026-08-22 10:24:06,722: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[56d77e11-2529-40a9-baf4-e4be9e8fcf51] received
+[2026-08-22 10:24:06,727: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[56d77e11-2529-40a9-baf4-e4be9e8fcf51] succeeded in 0.0s: None
+[2026-08-22 10:24:10,463: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0378f961-d844-4349-a419-7ff584b68475] received
+[2026-08-22 10:24:10,467: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0378f961-d844-4349-a419-7ff584b68475] succeeded in 0.0s: None
+[2026-08-22 10:24:14,314: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[ff147966-49b4-4d1d-b206-be0784692b6f] received
+[2026-08-22 10:24:14,324: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[ff147966-49b4-4d1d-b206-be0784692b6f] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:24:18,047: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[26eaf179-f125-4798-8f4a-85690787b9b4] received
+[2026-08-22 10:24:18,052: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[26eaf179-f125-4798-8f4a-85690787b9b4] succeeded in 0.0s: None
+[2026-08-22 10:24:21,297: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[bb718a9f-c3ba-4f7f-9964-301e4cba4185] received
+[2026-08-22 10:24:21,301: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[bb718a9f-c3ba-4f7f-9964-301e4cba4185] succeeded in 0.0s: None
+[2026-08-22 10:24:25,260: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1daae658-2a03-4982-a164-31fa9cd0f426] received
+[2026-08-22 10:24:25,265: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1daae658-2a03-4982-a164-31fa9cd0f426] succeeded in 0.0s: None
+[2026-08-22 10:24:28,875: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[64e83c0c-279e-4a5f-8edd-6f0bb63e0516] received
+[2026-08-22 10:24:28,878: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[64e83c0c-279e-4a5f-8edd-6f0bb63e0516] succeeded in 0.0s: None
+[2026-08-22 10:24:32,162: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1ef6344b-b808-48c4-921f-7f664f69ce1a] received
+[2026-08-22 10:24:32,168: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1ef6344b-b808-48c4-921f-7f664f69ce1a] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:24:32,170: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[290c436e-be48-44bc-9440-f2baa573b5dc] received
+[32m2026-08-22 10:24:32.179[0m | [34m[1mDEBUG   [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m30[0m - [34m[1m[ALERT_CREATE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 type=abnormal_movement severity=medium threat_score=0.6[0m
+[32m2026-08-22 10:24:32.284[0m | [1mINFO    [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m76[0m - [1m[ALERT_CREATE] Alert 4ae3e9f3-2672-4f59-8743-6895854a8aef stored in DB and broadcast: abnormal_movement | Camera: 1a32cb23-0820-4385-9ab5-de8e472e2c04[0m
+[2026-08-22 10:24:32,287: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[290c436e-be48-44bc-9440-f2baa573b5dc] succeeded in 0.10899999999674037s: None
+[2026-08-22 10:24:32,293: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[be6dbb5f-fef4-4ac4-ada4-4c617d7787b3] received
+[32m2026-08-22 10:24:32.375[0m | [33m[1mWARNING [0m | [36mapp.services.email_service[0m:[36m_get_mail[0m:[36m35[0m - [33m[1mEmail not configured: 1 validation error for ConnectionConfig
+MAIL_FROM
+  value is not a valid email address: The part after the @-sign is not valid. It should have a period. [type=value_error, input_value='alerts@localhost', input_type=str][0m
+[32m2026-08-22 10:24:32.376[0m | [1mINFO    [0m | [36mapp.services.email_service[0m:[36msend_alert_email[0m:[36m125[0m - [1m[EMAIL-MOCK] Alert to ['admin@campus-sentinel.local']: Abnormal Movement — Person #17 (running)[0m
+[2026-08-22 10:24:32,379: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[be6dbb5f-fef4-4ac4-ada4-4c617d7787b3] succeeded in 0.07799999999406282s: None
+[2026-08-22 10:24:35,495: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[ccd9abaf-0270-4808-a8f9-85701e2356d6] received
+[2026-08-22 10:24:35,499: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[ccd9abaf-0270-4808-a8f9-85701e2356d6] succeeded in 0.0s: None
+[2026-08-22 10:24:38,872: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f68e6eb7-bc6f-4e3d-a01a-0fbc514b8a70] received
+[2026-08-22 10:24:38,876: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f68e6eb7-bc6f-4e3d-a01a-0fbc514b8a70] succeeded in 0.0s: None
+[2026-08-22 10:24:42,531: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0c72de1e-1bf0-4003-949c-beb744555ac8] received
+[2026-08-22 10:24:42,540: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0c72de1e-1bf0-4003-949c-beb744555ac8] succeeded in 0.0s: None
+[2026-08-22 10:24:46,251: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[3b01abb7-cb7b-4a51-bc29-26b55f27c043] received
+[2026-08-22 10:24:46,258: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[3b01abb7-cb7b-4a51-bc29-26b55f27c043] succeeded in 0.0s: None
+[2026-08-22 10:24:49,742: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1348efab-c248-4377-87a0-1d72b6229a6a] received
+[2026-08-22 10:24:49,747: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1348efab-c248-4377-87a0-1d72b6229a6a] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:24:53,092: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[4f030720-7d16-44a7-b8a8-a8ef1e260373] received
+[2026-08-22 10:24:53,097: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[4f030720-7d16-44a7-b8a8-a8ef1e260373] succeeded in 0.0s: None
+[2026-08-22 10:24:56,383: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[cbbb868e-177e-434c-a170-2ef548007d5f] received
+[2026-08-22 10:24:56,387: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[cbbb868e-177e-434c-a170-2ef548007d5f] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:24:59,612: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5e78dc7e-d8f8-4ce1-bd79-b078ec1363c5] received
+[2026-08-22 10:24:59,616: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5e78dc7e-d8f8-4ce1-bd79-b078ec1363c5] succeeded in 0.0s: None
+[2026-08-22 10:25:02,819: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b1365d7a-0eca-400b-8d11-f446618ce4bc] received
+[2026-08-22 10:25:02,824: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b1365d7a-0eca-400b-8d11-f446618ce4bc] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:25:06,164: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[2cd5cdc1-2bed-475a-9649-3d4fd7720f8f] received
+[2026-08-22 10:25:06,170: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[2cd5cdc1-2bed-475a-9649-3d4fd7720f8f] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:25:09,539: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b7087ff8-7c66-4374-86fd-674dd3a94bc0] received
+[2026-08-22 10:25:09,542: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b7087ff8-7c66-4374-86fd-674dd3a94bc0] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:25:12,879: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1d22fe1f-948f-4883-ab91-447a85e35b34] received
+[2026-08-22 10:25:12,882: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[1d22fe1f-948f-4883-ab91-447a85e35b34] succeeded in 0.0s: None
+[2026-08-22 10:25:16,227: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f41e663c-a068-4646-adac-89dc90a6408c] received
+[2026-08-22 10:25:16,233: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f41e663c-a068-4646-adac-89dc90a6408c] succeeded in 0.014999999999417923s: None
+[2026-08-22 10:25:19,494: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d747b07d-6ae6-4234-8291-365e8ac21379] received
+[2026-08-22 10:25:19,497: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d747b07d-6ae6-4234-8291-365e8ac21379] succeeded in 0.0s: None
+[2026-08-22 10:25:22,882: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0b48f7c2-fd5c-441b-ad4c-f9ba620312c1] received
+[2026-08-22 10:25:22,888: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0b48f7c2-fd5c-441b-ad4c-f9ba620312c1] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:25:26,073: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a692de6f-e477-4699-adab-c4402bd55056] received
+[2026-08-22 10:25:26,076: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a692de6f-e477-4699-adab-c4402bd55056] succeeded in 0.0s: None
+[2026-08-22 10:25:30,124: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7ebb2668-3a3b-4655-8051-5bee584a07ff] received
+[2026-08-22 10:25:30,128: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7ebb2668-3a3b-4655-8051-5bee584a07ff] succeeded in 0.0s: None
+[2026-08-22 10:25:33,364: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[96ae874e-d1ec-4825-9fe5-870d3eaf9a35] received
+[2026-08-22 10:25:33,370: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[96ae874e-d1ec-4825-9fe5-870d3eaf9a35] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:25:36,723: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[885c9173-8143-4350-8024-94e075354bff] received
+[2026-08-22 10:25:36,728: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[885c9173-8143-4350-8024-94e075354bff] succeeded in 0.0s: None
+[2026-08-22 10:25:40,083: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[11d0ba92-1100-44ea-bbbf-0e96e033c994] received
+[2026-08-22 10:25:40,089: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[11d0ba92-1100-44ea-bbbf-0e96e033c994] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:25:43,482: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[81fde02b-dd68-422f-92b9-bd59e11c85a4] received
+[2026-08-22 10:25:43,486: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[81fde02b-dd68-422f-92b9-bd59e11c85a4] succeeded in 0.0s: None
+[2026-08-22 10:25:46,841: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[545e9eba-9676-435b-88af-ad9f648eef2e] received
+[2026-08-22 10:25:46,846: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[545e9eba-9676-435b-88af-ad9f648eef2e] succeeded in 0.0s: None
+[2026-08-22 10:25:50,241: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[16fccc30-6690-4e5d-8c5f-35ab70b8a175] received
+[2026-08-22 10:25:50,244: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[16fccc30-6690-4e5d-8c5f-35ab70b8a175] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:25:53,578: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[90ab14ef-d914-40ec-be31-2c1cf51d6287] received
+[2026-08-22 10:25:53,581: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[90ab14ef-d914-40ec-be31-2c1cf51d6287] succeeded in 0.0s: None
+[2026-08-22 10:25:56,976: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d5d6be78-b43d-4ea2-9dce-8d7841cfd83c] received
+[2026-08-22 10:25:56,979: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d5d6be78-b43d-4ea2-9dce-8d7841cfd83c] succeeded in 0.014999999999417923s: None
+[2026-08-22 10:26:00,292: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a62d2e49-a4a9-4893-a36f-8346f8675d66] received
+[2026-08-22 10:26:00,295: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a62d2e49-a4a9-4893-a36f-8346f8675d66] succeeded in 0.0s: None
+[2026-08-22 10:26:03,641: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0860e6fe-89b6-4714-863d-51bc5a92f8f8] received
+[2026-08-22 10:26:03,647: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[0860e6fe-89b6-4714-863d-51bc5a92f8f8] succeeded in 0.0s: None
+[2026-08-22 10:26:03,650: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[3e56e031-002e-4890-8920-7f67ee4c88a0] received
+[32m2026-08-22 10:26:03.658[0m | [34m[1mDEBUG   [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m30[0m - [34m[1m[ALERT_CREATE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 type=abnormal_movement severity=high threat_score=0.6[0m
+[32m2026-08-22 10:26:03.760[0m | [1mINFO    [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m76[0m - [1m[ALERT_CREATE] Alert 122a6bf4-aa47-4d60-be60-15cbc99ba90d stored in DB and broadcast: abnormal_movement | Camera: 1a32cb23-0820-4385-9ab5-de8e472e2c04[0m
+[2026-08-22 10:26:03,763: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[3e56e031-002e-4890-8920-7f67ee4c88a0] succeeded in 0.11000000000058208s: None
+[2026-08-22 10:26:03,768: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[9dfa2517-469f-40e1-9251-97177fc2ff89] received
+[32m2026-08-22 10:26:03.854[0m | [33m[1mWARNING [0m | [36mapp.services.email_service[0m:[36m_get_mail[0m:[36m35[0m - [33m[1mEmail not configured: 1 validation error for ConnectionConfig
+MAIL_FROM
+  value is not a valid email address: The part after the @-sign is not valid. It should have a period. [type=value_error, input_value='alerts@localhost', input_type=str][0m
+[32m2026-08-22 10:26:03.854[0m | [1mINFO    [0m | [36mapp.services.email_service[0m:[36msend_alert_email[0m:[36m125[0m - [1m[EMAIL-MOCK] Alert to ['admin@campus-sentinel.local']: Abnormal Movement — Person #21 (sudden_acceleration)[0m
+[2026-08-22 10:26:03,857: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[9dfa2517-469f-40e1-9251-97177fc2ff89] succeeded in 0.0930000000007567s: None
+[2026-08-22 10:26:06,972: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[6ac3e7fa-458a-4a8d-be0d-542e41fed59d] received
+[2026-08-22 10:26:06,975: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[6ac3e7fa-458a-4a8d-be0d-542e41fed59d] succeeded in 0.0s: None
+[2026-08-22 10:26:10,211: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[98ac076b-eb29-44b9-bbef-8c8637102622] received
+[2026-08-22 10:26:10,214: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[98ac076b-eb29-44b9-bbef-8c8637102622] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:26:13,489: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5a43e0a3-2437-4b12-af85-82dd529e3a88] received
+[2026-08-22 10:26:13,494: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5a43e0a3-2437-4b12-af85-82dd529e3a88] succeeded in 0.01599999999598367s: None
+[2026-08-22 10:26:16,778: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[240edb34-8f68-4ddb-9128-68f7390bcfa4] received
+[2026-08-22 10:26:16,781: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[240edb34-8f68-4ddb-9128-68f7390bcfa4] succeeded in 0.0s: None
+[2026-08-22 10:26:20,138: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[501c4a0e-5c29-4d3f-97f1-c7c48e62cc41] received
+[2026-08-22 10:26:20,141: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[501c4a0e-5c29-4d3f-97f1-c7c48e62cc41] succeeded in 0.0s: None
+[2026-08-22 10:26:23,440: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[3f42f92c-946a-4883-9fc0-cf245c170bdf] received
+[2026-08-22 10:26:23,443: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[3f42f92c-946a-4883-9fc0-cf245c170bdf] succeeded in 0.0s: None
+[2026-08-22 10:26:26,697: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5eded9c8-4d94-4064-9e5e-773fe18258b3] received
+[2026-08-22 10:26:26,712: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[5eded9c8-4d94-4064-9e5e-773fe18258b3] succeeded in 0.0s: None
+[2026-08-22 10:26:30,005: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[087374d3-8f1c-4b72-bc00-8ae9f6d1dd65] received
+[2026-08-22 10:26:30,010: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[087374d3-8f1c-4b72-bc00-8ae9f6d1dd65] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:26:33,310: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[56abf891-9001-44ae-baf6-792d82541e6e] received
+[2026-08-22 10:26:33,313: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[56abf891-9001-44ae-baf6-792d82541e6e] succeeded in 0.0s: None
+[2026-08-22 10:26:36,609: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a6d00424-7bf6-4c8d-ae41-068c2586de36] received
+[2026-08-22 10:26:36,614: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a6d00424-7bf6-4c8d-ae41-068c2586de36] succeeded in 0.0s: None
+[2026-08-22 10:26:39,838: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[9d5da3fe-5ee6-4c9b-b567-0714f3c65447] received
+[2026-08-22 10:26:39,841: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[9d5da3fe-5ee6-4c9b-b567-0714f3c65447] succeeded in 0.0s: None
+[2026-08-22 10:26:43,105: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f57b4435-83bb-4303-a8ee-19a96c790282] received
+[2026-08-22 10:26:43,108: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[f57b4435-83bb-4303-a8ee-19a96c790282] succeeded in 0.0s: None
+[2026-08-22 10:26:46,349: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a317130e-90c3-4fba-9510-7284e3e92512] received
+[2026-08-22 10:26:46,355: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[a317130e-90c3-4fba-9510-7284e3e92512] succeeded in 0.014999999999417923s: None
+[2026-08-22 10:26:49,711: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e18cdcfe-6164-4bec-91ea-31e57b248d6d] received
+[2026-08-22 10:26:49,713: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e18cdcfe-6164-4bec-91ea-31e57b248d6d] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:26:52,949: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b84b689b-ec38-4c71-a225-e39e4dce80b6] received
+[2026-08-22 10:26:52,954: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b84b689b-ec38-4c71-a225-e39e4dce80b6] succeeded in 0.0s: None
+[2026-08-22 10:26:56,333: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b683c7e4-3cfd-4291-9ed5-f7b1ae67b2f8] received
+[2026-08-22 10:26:56,338: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[b683c7e4-3cfd-4291-9ed5-f7b1ae67b2f8] succeeded in 0.01600000000325963s: None
+[2026-08-22 10:26:59,769: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7f149b35-4762-4704-87db-4e2977fb6cfe] received
+[2026-08-22 10:26:59,773: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[7f149b35-4762-4704-87db-4e2977fb6cfe] succeeded in 0.0s: None
+[2026-08-22 10:27:03,047: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d5984b1f-53ce-487f-b119-d445b63b3369] received
+[2026-08-22 10:27:03,051: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[d5984b1f-53ce-487f-b119-d445b63b3369] succeeded in 0.0s: None
+[2026-08-22 10:27:06,490: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[320d414a-e2b6-4217-918c-52307db48863] received
+[2026-08-22 10:27:06,493: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[320d414a-e2b6-4217-918c-52307db48863] succeeded in 0.0s: None
+[2026-08-22 10:27:09,881: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[4d50cfc4-b563-490f-8d3b-b7c06eabfdd2] received
+[2026-08-22 10:27:09,883: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[4d50cfc4-b563-490f-8d3b-b7c06eabfdd2] succeeded in 0.0s: None
+[2026-08-22 10:27:13,294: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[12ecbf80-5c4e-4044-ac54-cc51422ec5ea] received
+[2026-08-22 10:27:13,299: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[12ecbf80-5c4e-4044-ac54-cc51422ec5ea] succeeded in 0.0s: None
+[2026-08-22 10:27:16,689: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e70c4122-fde4-4bb9-9cff-9d69ef60eb09] received
+[2026-08-22 10:27:16,692: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[e70c4122-fde4-4bb9-9cff-9d69ef60eb09] succeeded in 0.0s: None
+[2026-08-22 10:27:20,095: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[fe441bb4-d896-4b04-940d-537ae53b7caa] received
+[2026-08-22 10:27:20,101: INFO/MainProcess] Task app.services.tasks.ai_tasks.analyze_behavior[fe441bb4-d896-4b04-940d-537ae53b7caa] succeeded in 0.0s: None
+[2026-08-22 10:27:20,104: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[a4eb3d89-745d-410a-a581-25b650f9c73c] received
+[32m2026-08-22 10:27:20.114[0m | [34m[1mDEBUG   [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m30[0m - [34m[1m[ALERT_CREATE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 type=abnormal_movement severity=medium threat_score=0.6[0m
+[32m2026-08-22 10:27:20.224[0m | [1mINFO    [0m | [36mapp.services.tasks.alert_tasks[0m:[36mcreate_and_dispatch_alert[0m:[36m76[0m - [1m[ALERT_CREATE] Alert 72286a39-7baa-408d-839f-510dfe6f6fe1 stored in DB and broadcast: abnormal_movement | Camera: 1a32cb23-0820-4385-9ab5-de8e472e2c04[0m
+[2026-08-22 10:27:20,226: INFO/MainProcess] Task app.services.tasks.alert_tasks.create_and_dispatch_alert[a4eb3d89-745d-410a-a581-25b650f9c73c] succeeded in 0.11000000000058208s: None
+[2026-08-22 10:27:20,232: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[22aa698a-7fb9-436f-9682-70d283a07f37] received
+[32m2026-08-22 10:27:20.326[0m | [33m[1mWARNING [0m | [36mapp.services.email_service[0m:[36m_get_mail[0m:[36m35[0m - [33m[1mEmail not configured: 1 validation error for ConnectionConfig
+MAIL_FROM
+  value is not a valid email address: The part after the @-sign is not valid. It should have a period. [type=value_error, input_value='alerts@localhost', input_type=str][0m
+[32m2026-08-22 10:27:20.326[0m | [1mINFO    [0m | [36mapp.services.email_service[0m:[36msend_alert_email[0m:[36m125[0m - [1m[EMAIL-MOCK] Alert to ['admin@campus-sentinel.local']: Abnormal Movement — Person #29 (running)[0m
+[2026-08-22 10:27:20,329: INFO/MainProcess] Task app.services.tasks.alert_tasks.send_email_alert[22aa698a-7fb9-436f-9682-70d283a07f37] succeeded in 0.09399999999732245s: None

@@ -1,0 +1,52 @@
+# Environment
+.env
+*.env.local
+*.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+.next/
+out/
+.turbo/
+
+# AI Models (large binaries — store in model registry)
+ai-engine/models/weights/*.pt
+ai-engine/models/weights/*.pth
+backend/models/weights/*.pt
+backend/models/abd/*.pkl
+
+# Docker volumes
+postgres_data/
+redis_data/
+
+# Logs
+*.log
+logs/
+
+# Snapshots
+snapshots/
+*.jpg
+*.jpeg
+*.png
+!public/*.png
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

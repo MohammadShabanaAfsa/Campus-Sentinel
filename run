@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# Campus Sentinel — one-command startup.
+# Brings up, in order, with a health gate between each step:
+#   1. Postgres + Redis (Docker)
+#   2. Celery worker      (--pool=solo: required on Windows, no fork())
+#   3. FastAPI backend    (production mode — no --reload; see docs/DEPLOYMENT.md
+#                          for why a naive --reload watches backend/.venv and
+#                          causes constant spurious reloads)
+#   4. Next.js frontend   (production build + start — NOT `next dev`. This
+#                          project's next.config.js sets output:"standalone"
+#                          for the Docker image, which is incompatible with
+#                          `next start`; native runs build without it. `next
+#                          dev`'s incremental compiler is also far more prone
+#                          to "Cannot find module './xxx.js'" chunk corruption
+#                          on this machine, since the whole repo is OneDrive-
+#                          synced and OneDrive locks files mid-write.)
+set -euo pipefail
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PIDDIR="$PROJ/.pids"
+LOGDIR="$PROJ/logs"
+mkdir -p "$PIDDIR" "$LOGDIR"
+
+VENV_PY="$PROJ/backend/.venv/Scripts/python.exe"
+if [ ! -f "$VENV_PY" ]; then
+  echo "ERROR: backend venv not found at $VENV_PY"
+  echo "Create it first: cd backend && python -m venv .venv && .venv/Scripts/python -m pip install -r requirements.txt"
+  exit 1
+fi
+
+echo "=== Campus Sentinel — starting ==="
+
+# ─── 0. Sweep stray processes ─────────────────────────────────────────────
+# A leftover `next dev` (or a duplicate `next start`/uvicorn/celery from a
+# crashed previous session) writing to the same .next/DB/broker concurrently
+# with what we're about to start is what caused the Fast-Refresh module
+# re-evaluation that reset in-memory state (dashboard reload / map refresh /
+# CSI reset) in a prior investigation. Always start from a clean slate.
+echo "[0/5] Sweeping stray processes..."
+pkill -f "next dev" 2>/dev/null && echo "      Killed stray: next dev"
+pkill -f "next-server" 2>/dev/null && echo "      Killed stray: next-server"
+pkill -f "next start" 2>/dev/null && echo "      Killed stray: next start"
+pkill -f "uvicorn app.main:app" 2>/dev/null && echo "      Killed stray: uvicorn"
+pkill -f "celery -A app.core.celery_app" 2>/dev/null && echo "      Killed stray: celery"
+sleep 1
+true  # never fail the script just because nothing was running
+
+# ─── 1. Postgres + Redis ──────────────────────────────────────────────────
+echo "[1/5] Postgres + Redis..."
+(cd "$PROJ" && docker compose up -d postgres redis)
+for i in $(seq 1 60); do
+  PG_OK=$(docker inspect -f '{{.State.Health.Status}}' cs_postgres 2>/dev/null || echo "")
+  RD_OK=$(docker inspect -f '{{.State.Health.Status}}' cs_redis 2>/dev/null || echo "")
+  [ "$PG_OK" = "healthy" ] && [ "$RD_OK" = "healthy" ] && break
+  sleep 2
+done
+if [ "$PG_OK" != "healthy" ] || [ "$RD_OK" != "healthy" ]; then
+  echo "ERROR: Postgres/Redis did not become healthy in time (postgres=$PG_OK redis=$RD_OK)"
+  exit 1
+fi
+echo "      Postgres + Redis healthy."
+
+# ─── 2. Celery worker ──────────────────────────────────────────────────────
+echo "[2/5] Celery worker..."
+(cd "$PROJ/backend" && nohup "$VENV_PY" -m celery -A app.core.celery_app worker \
+  --loglevel=info --pool=solo -Q ai_tasks,alerts,analytics \
+  > "$LOGDIR/celery_worker.log" 2>&1 &
+  echo $! > "$PIDDIR/celery.pid")
+sleep 2
+echo "      Celery worker PID $(cat "$PIDDIR/celery.pid")"
+
+# ─── 3. Backend (FastAPI, production — no --reload) ────────────────────────
+echo "[3/5] Backend..."
+(cd "$PROJ/backend" && nohup "$VENV_PY" -m uvicorn app.main:app \
+  --host 0.0.0.0 --port 8000 \
+  > "$LOGDIR/backend.log" 2>&1 &
+  echo $! > "$PIDDIR/backend.pid")
+for i in $(seq 1 30); do
+  curl -sf http://localhost:8000/health >/dev/null 2>&1 && break
+  sleep 2
+done
+if ! curl -sf http://localhost:8000/health >/dev/null 2>&1; then
+  echo "ERROR: backend did not become healthy — check $LOGDIR/backend.log"
+  exit 1
+fi
+echo "      Backend healthy at http://localhost:8000  (PID $(cat "$PIDDIR/backend.pid"))"
+
+# ─── 4. Frontend (Next.js, production build + start — no next dev) ────────
+echo "[4/5] Frontend..."
+cd "$PROJ/frontend"
+if [ ! -f ".next/BUILD_ID" ]; then
+  echo "      No valid production build found — building (this takes ~30-60s)..."
+  npm run build
+fi
+nohup npm run start > "$LOGDIR/frontend.log" 2>&1 &
+echo $! > "$PIDDIR/frontend.pid"
+frontend_up=false
+for i in $(seq 1 20); do
+  if curl -sf -o /dev/null http://localhost:3000; then
+    frontend_up=true
+    break
+  fi
+  sleep 2
+done
+if [ "$frontend_up" != "true" ]; then
+  echo "ERROR: frontend did not respond — check $LOGDIR/frontend.log"
+  exit 1
+fi
+echo "      Frontend responding at http://localhost:3000  (PID $(cat "$PIDDIR/frontend.pid"))"
+
+echo ""
+echo "=== Campus Sentinel is up ==="
+echo "  Dashboard → http://localhost:3000"
+echo "  API docs  → http://localhost:8000/api/docs"
+echo "  Logs:       tail -f $LOGDIR/{backend,frontend,celery_worker}.log"
+echo "  Stop:       ./terminate"

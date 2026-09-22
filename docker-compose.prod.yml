@@ -1,0 +1,93 @@
+# Production overrides for docker-compose.yml
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  postgres:
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+
+  redis:
+    restart: always
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD}
+      --maxmemory 1gb
+      --maxmemory-policy allkeys-lru
+      --save 3600 1
+      --appendonly yes
+    volumes:
+      - redisdata_prod:/data
+
+  backend:
+    restart: always
+    environment:
+      - ENVIRONMENT=production
+      - WORKERS=4
+      - DEBUG=false
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-campus-sentinel.local}
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  celery_worker:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+
+  celery_beat:
+    restart: always
+
+  frontend:
+    restart: always
+    build:
+      args:
+        - NODE_ENV=production
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  nginx:
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infrastructure/nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - ./infrastructure/nginx/ssl:/etc/ssl:ro
+      - certbot_webroot:/var/www/certbot:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  prometheus:
+    restart: always
+    volumes:
+      - prometheus_prod:/prometheus
+
+  grafana:
+    restart: always
+    volumes:
+      - grafana_prod:/var/lib/grafana
+
+volumes:
+  pgdata_prod:
+  redisdata_prod:
+  prometheus_prod:
+  grafana_prod:
+  certbot_webroot:

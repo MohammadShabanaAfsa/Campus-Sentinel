@@ -1,0 +1,27 @@
+ 
+ -------------- celery@DESKTOP-3QOGP59 v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Windows-10-10.0.26200-SP0 2026-07-29 00:17:06
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         campus_sentinel:0x166afc3bfd0
+- ** ---------- .> transport:   redis://:**@localhost:6379/0
+- ** ---------- .> results:     redis://:**@localhost:6379/0
+- *** --- * --- .> concurrency: 8 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> ai_tasks         exchange=ai_tasks(direct) key=ai_tasks
+                .> alerts           exchange=alerts(direct) key=alerts
+                .> analytics        exchange=analytics(direct) key=analytics
+
+[tasks]
+  . app.services.tasks.ai_tasks.analyze_behavior
+  . app.services.tasks.alert_tasks.create_and_dispatch_alert
+  . app.services.tasks.alert_tasks.send_email_alert
+  . app.services.tasks.analytics_tasks.cleanup_old_snapshots
+  . app.services.tasks.analytics_tasks.compute_campus_safety_index
+  . app.services.tasks.analytics_tasks.send_daily_digest_email
+  . app.services.tasks.analytics_tasks.train_abd_models
+  . app.services.tasks.analytics_tasks.update_threat_predictions
+

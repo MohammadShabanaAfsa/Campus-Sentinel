@@ -1,0 +1,199 @@
+C:\Users\Hp\OneDrive\Desktop\Documents\CAMPUS-SENTINEL\backend\.venv\Lib\site-packages\pydantic\_internal\_fields.py:160: UserWarning: Field "model_version" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [3972]
+INFO:     Waiting for application startup.
+2026-07-29 00:27:35.906 | INFO     | app.main:lifespan:23 - Starting Campus Sentinel v1.0.0
+2026-07-29 00:27:35.907 | INFO     | app.main:lifespan:27 - Redis connected
+2026-07-29 00:27:36.023 | INFO     | app.main:lifespan:51 - Background systems starting...
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-07-29 00:27:36.030 | INFO     | app.main:_redis_pubsub_listener:153 - Redis pub/sub listener started
+2026-07-29 00:27:36.226 | DEBUG    | agents.orchestrator.agent_bus:subscribe:51 - AgentBus: subscribed handler to bus:raw_frames
+2026-07-29 00:27:36.227 | INFO     | agents.vision_agent.agent:start:42 - VisionAgent started
+2026-07-29 00:27:36.228 | DEBUG    | agents.orchestrator.agent_bus:subscribe:51 - AgentBus: subscribed handler to bus:tracks
+2026-07-29 00:27:36.228 | INFO     | agents.behavior_agent.agent:start:26 - BehaviorAgent started
+2026-07-29 00:27:36.229 | DEBUG    | agents.orchestrator.agent_bus:subscribe:51 - AgentBus: subscribed handler to bus:behaviors
+2026-07-29 00:27:36.230 | INFO     | agents.prediction_agent.agent:start:17 - PredictionAgent started
+2026-07-29 00:27:36.231 | DEBUG    | agents.orchestrator.agent_bus:subscribe:51 - AgentBus: subscribed handler to bus:threats
+2026-07-29 00:27:36.232 | INFO     | agents.decision_agent.agent:start:16 - DecisionAgent started
+2026-07-29 00:27:36.232 | DEBUG    | agents.orchestrator.agent_bus:subscribe:51 - AgentBus: subscribed handler to bus:decisions
+2026-07-29 00:27:36.232 | INFO     | agents.response_agent.agent:start:20 - ResponseAgent started
+2026-07-29 00:27:36.234 | INFO     | agents.orchestrator.agent_bus:start_listening:75 - AgentBus listener started
+2026-07-29 00:27:36.235 | INFO     | agents.response_agent.agent:start_all_agents:52 - All agents started and listening
+2026-07-29 00:27:39.125 | INFO     | ai_engine.vision.stream_manager:start_all_active_cameras:270 - Starting 2 camera streams (one StreamManager each)
+2026-07-29 00:27:39.127 | INFO     | ai_engine.vision.stream_manager:start:87 - Started stream for camera 1a32cb23-0820-4385-9ab5-de8e472e2c04
+2026-07-29 00:27:39.127 | INFO     | ai_engine.vision.stream_manager:start:87 - Started stream for camera 6cf7815f-009b-48e6-bf71-a7548a5e75b0
+2026-07-29 00:27:43.436 | INFO     | ai_engine.vision.detector:_load_model:25 - YOLOv8 model loaded: yolov8n.pt on cpu
+2026-07-29 00:27:43.446 | INFO     | ai_engine.vision.detector:_load_model:25 - YOLOv8 model loaded: yolov8n.pt on cpu
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1785265064.230858   12380 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785265064.238502    5036 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+2026-07-29 00:27:44.238 | INFO     | ai_engine.classroom.face_pose_analyzer:_load:60 - FacePoseAnalyzer[6cf7815f-009b-48e6-bf71-a7548a5e75b0]: MediaPipe Face Mesh + Pose loaded
+2026-07-29 00:27:44.238 | INFO     | ai_engine.vision.stream_manager:_camera_loop:142 - Classroom Monitoring enabled for camera 6cf7815f-009b-48e6-bf71-a7548a5e75b0
+W0000 00:00:1785265064.367899   17488 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785265064.381193   17488 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+2026-07-29 00:27:44.523 | INFO     | ai_engine.vision.camera_manager:_try_open:125 - [6cf7815f-009b-48e6-bf71-a7548a5e75b0] Camera source opened: http://192.168.1.6:8080/video
+2026-07-29 00:27:44.524 | INFO     | ai_engine.vision.stream_manager:_camera_loop:156 - Stream opened: camera 6cf7815f-009b-48e6-bf71-a7548a5e75b0 (source=http://192.168.1.6:8080/video, fallback=False)
+2026-07-29 00:27:46.889 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=3 detections=0 tracks=0
+2026-07-29 00:27:46.893 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=3 detections=0 tracks=0
+2026-07-29 00:27:47.116 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=6 detections=0 tracks=0
+2026-07-29 00:27:47.295 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=6 detections=0 tracks=0
+2026-07-29 00:27:47.353 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=9 detections=0 tracks=0
+2026-07-29 00:27:47.651 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=12 detections=0 tracks=0
+2026-07-29 00:27:47.733 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=9 detections=0 tracks=0
+2026-07-29 00:27:47.883 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=15 detections=0 tracks=0
+2026-07-29 00:27:48.256 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=12 detections=0 tracks=0
+2026-07-29 00:27:48.273 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=18 detections=0 tracks=0
+2026-07-29 00:27:48.490 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=21 detections=0 tracks=0
+2026-07-29 00:27:48.592 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=15 detections=0 tracks=0
+2026-07-29 00:27:48.708 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=24 detections=0 tracks=0
+2026-07-29 00:27:48.943 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=27 detections=0 tracks=0
+2026-07-29 00:27:48.989 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=18 detections=0 tracks=0
+2026-07-29 00:27:49.161 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=30 detections=0 tracks=0
+2026-07-29 00:27:49.381 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 received 0 tracks for analysis
+2026-07-29 00:27:49.429 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=21 detections=0 tracks=0
+2026-07-29 00:27:49.458 | DEBUG    | ai_engine.vision.stream_manager:_persist_classroom_metric:380 - [CLASSROOM] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 present=0/30 sleeping=0 talking=0 attention_index=62.5
+2026-07-29 00:27:49.475 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:49.667 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=33 detections=0 tracks=0
+2026-07-29 00:27:49.839 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=24 detections=0 tracks=0
+2026-07-29 00:27:49.942 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=36 detections=0 tracks=0
+2026-07-29 00:27:50.305 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=27 detections=0 tracks=0
+2026-07-29 00:27:50.453 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=39 detections=0 tracks=0
+2026-07-29 00:27:50.801 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=42 detections=1 tracks=0
+2026-07-29 00:27:50.860 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=30 detections=0 tracks=0
+2026-07-29 00:27:51.096 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=45 detections=0 tracks=0
+2026-07-29 00:27:51.333 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 feature_vec=[0, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:51.334 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 anomaly_score=0.000
+2026-07-29 00:27:51.342 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 received 0 tracks for analysis
+2026-07-29 00:27:51.394 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=33 detections=0 tracks=0
+2026-07-29 00:27:51.409 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=48 detections=1 tracks=0
+2026-07-29 00:27:51.422 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:51.423 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 feature_vec=[0, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:51.424 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 anomaly_score=0.000
+2026-07-29 00:27:51.441 | DEBUG    | ai_engine.prediction.threat_predictor:_load_models:48 - No RF model found for 6cf7815f-009b-48e6-bf71-a7548a5e75b0 — using rule-based fallback
+2026-07-29 00:27:51.442 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 {}
+2026-07-29 00:27:51.442 | DEBUG    | ai_engine.prediction.threat_predictor:_load_models:48 - No RF model found for 1a32cb23-0820-4385-9ab5-de8e472e2c04 — using rule-based fallback
+2026-07-29 00:27:51.443 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 {}
+2026-07-29 00:27:51.622 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=51 detections=1 tracks=1
+2026-07-29 00:27:51.771 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=36 detections=0 tracks=0
+2026-07-29 00:27:51.872 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=54 detections=0 tracks=1
+2026-07-29 00:27:52.123 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=39 detections=0 tracks=0
+2026-07-29 00:27:52.129 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=57 detections=0 tracks=1
+2026-07-29 00:27:52.330 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=60 detections=0 tracks=1
+2026-07-29 00:27:52.440 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 received 1 tracks for analysis
+2026-07-29 00:27:52.441 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:52.443 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 feature_vec=[1, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:52.443 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 anomaly_score=0.000
+2026-07-29 00:27:52.454 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 {}
+2026-07-29 00:27:52.504 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=42 detections=0 tracks=0
+2026-07-29 00:27:52.541 | DEBUG    | ai_engine.vision.stream_manager:_persist_classroom_metric:380 - [CLASSROOM] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 present=1/30 sleeping=0 talking=0 attention_index=63.3
+2026-07-29 00:27:52.688 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=63 detections=0 tracks=1
+2026-07-29 00:27:52.889 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=45 detections=0 tracks=0
+2026-07-29 00:27:52.927 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=66 detections=0 tracks=1
+2026-07-29 00:27:53.249 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=69 detections=0 tracks=1
+2026-07-29 00:27:53.340 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=48 detections=0 tracks=0
+2026-07-29 00:27:53.460 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=72 detections=0 tracks=1
+2026-07-29 00:27:53.730 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=75 detections=0 tracks=1
+2026-07-29 00:27:53.739 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=51 detections=0 tracks=0
+2026-07-29 00:27:53.935 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=78 detections=0 tracks=1
+2026-07-29 00:27:54.084 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=54 detections=0 tracks=0
+2026-07-29 00:27:54.160 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=81 detections=0 tracks=1
+2026-07-29 00:27:54.378 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=84 detections=0 tracks=1
+2026-07-29 00:27:54.484 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=57 detections=0 tracks=0
+2026-07-29 00:27:54.599 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=87 detections=0 tracks=1
+2026-07-29 00:27:54.831 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=90 detections=0 tracks=1
+2026-07-29 00:27:54.893 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 received 1 tracks for analysis
+2026-07-29 00:27:54.894 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:54.896 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 feature_vec=[1, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:54.896 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 anomaly_score=0.000
+2026-07-29 00:27:54.907 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 {}
+2026-07-29 00:27:54.978 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=60 detections=0 tracks=0
+2026-07-29 00:27:55.022 | DEBUG    | ai_engine.vision.stream_manager:_persist_classroom_metric:380 - [CLASSROOM] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 present=1/30 sleeping=0 talking=0 attention_index=63.3
+2026-07-29 00:27:55.044 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 received 0 tracks for analysis
+2026-07-29 00:27:55.045 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:55.046 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 feature_vec=[0, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:55.047 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 anomaly_score=0.000
+2026-07-29 00:27:55.055 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 {}
+2026-07-29 00:27:55.193 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=93 detections=0 tracks=1
+2026-07-29 00:27:55.420 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=63 detections=0 tracks=0
+2026-07-29 00:27:55.444 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=96 detections=0 tracks=1
+2026-07-29 00:27:55.678 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=99 detections=0 tracks=1
+2026-07-29 00:27:55.814 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=66 detections=0 tracks=0
+2026-07-29 00:27:55.904 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=102 detections=0 tracks=1
+2026-07-29 00:27:56.123 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=105 detections=0 tracks=1
+2026-07-29 00:27:56.181 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=69 detections=0 tracks=0
+2026-07-29 00:27:56.363 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=108 detections=0 tracks=1
+2026-07-29 00:27:56.503 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=72 detections=0 tracks=0
+2026-07-29 00:27:56.632 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=111 detections=0 tracks=1
+2026-07-29 00:27:56.872 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=114 detections=0 tracks=1
+2026-07-29 00:27:56.896 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=75 detections=0 tracks=0
+2026-07-29 00:27:57.123 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=117 detections=0 tracks=1
+2026-07-29 00:27:57.325 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=78 detections=0 tracks=0
+2026-07-29 00:27:57.362 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=120 detections=0 tracks=1
+2026-07-29 00:27:57.460 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 received 1 tracks for analysis
+2026-07-29 00:27:57.460 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:57.461 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 feature_vec=[1, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:57.462 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 anomaly_score=0.000
+2026-07-29 00:27:57.470 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 {}
+2026-07-29 00:27:57.548 | DEBUG    | ai_engine.vision.stream_manager:_persist_classroom_metric:380 - [CLASSROOM] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 present=1/30 sleeping=0 talking=0 attention_index=63.3
+2026-07-29 00:27:57.683 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=81 detections=0 tracks=0
+2026-07-29 00:27:57.735 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=123 detections=0 tracks=1
+2026-07-29 00:27:58.030 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=126 detections=0 tracks=1
+2026-07-29 00:27:58.183 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=84 detections=0 tracks=0
+2026-07-29 00:27:58.259 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=129 detections=0 tracks=1
+2026-07-29 00:27:58.512 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=132 detections=0 tracks=1
+2026-07-29 00:27:58.524 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=87 detections=0 tracks=0
+2026-07-29 00:27:58.777 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=135 detections=0 tracks=1
+2026-07-29 00:27:58.964 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=90 detections=0 tracks=0
+2026-07-29 00:27:59.026 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 received 0 tracks for analysis
+2026-07-29 00:27:59.026 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 0 behavior(s) flagged by analyzers
+2026-07-29 00:27:59.027 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 feature_vec=[0, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:27:59.027 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 anomaly_score=0.000
+2026-07-29 00:27:59.035 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 {}
+2026-07-29 00:27:59.068 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=138 detections=1 tracks=1
+2026-07-29 00:27:59.334 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=93 detections=0 tracks=0
+2026-07-29 00:27:59.337 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=141 detections=1 tracks=1
+2026-07-29 00:27:59.601 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=144 detections=0 tracks=1
+2026-07-29 00:27:59.752 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=96 detections=0 tracks=0
+2026-07-29 00:27:59.829 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=147 detections=0 tracks=1
+2026-07-29 00:28:00.091 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=150 detections=1 tracks=1
+2026-07-29 00:28:00.248 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 received 1 tracks for analysis
+2026-07-29 00:28:00.249 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 0 behavior(s) flagged by analyzers
+2026-07-29 00:28:00.250 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 feature_vec=[1, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:28:00.251 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 anomaly_score=0.000
+2026-07-29 00:28:00.253 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=99 detections=0 tracks=0
+2026-07-29 00:28:00.260 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 {}
+2026-07-29 00:28:00.403 | DEBUG    | ai_engine.vision.stream_manager:_persist_classroom_metric:380 - [CLASSROOM] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 present=1/30 sleeping=0 talking=0 attention_index=64.5
+2026-07-29 00:28:00.616 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=153 detections=0 tracks=1
+2026-07-29 00:28:00.638 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=102 detections=0 tracks=0
+2026-07-29 00:28:01.036 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=156 detections=0 tracks=1
+2026-07-29 00:28:01.056 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=105 detections=0 tracks=0
+2026-07-29 00:28:01.395 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=159 detections=0 tracks=1
+2026-07-29 00:28:01.869 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=108 detections=0 tracks=0
+2026-07-29 00:28:01.927 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=162 detections=0 tracks=1
+2026-07-29 00:28:02.376 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=165 detections=0 tracks=1
+2026-07-29 00:28:02.393 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=111 detections=0 tracks=0
+2026-07-29 00:28:02.667 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=168 detections=0 tracks=1
+2026-07-29 00:28:02.821 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=114 detections=0 tracks=0
+2026-07-29 00:28:02.897 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=171 detections=0 tracks=1
+2026-07-29 00:28:03.469 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=174 detections=0 tracks=1
+2026-07-29 00:28:03.518 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=117 detections=0 tracks=0
+2026-07-29 00:28:03.703 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=177 detections=0 tracks=1
+2026-07-29 00:28:03.969 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=120 detections=0 tracks=0
+2026-07-29 00:28:04.024 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=180 detections=0 tracks=1
+2026-07-29 00:28:04.034 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 received 0 tracks for analysis
+2026-07-29 00:28:04.035 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 0 behavior(s) flagged by analyzers
+2026-07-29 00:28:04.035 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 feature_vec=[0, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:28:04.036 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 anomaly_score=0.000
+2026-07-29 00:28:04.046 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 {}
+2026-07-29 00:28:04.104 | DEBUG    | agents.behavior_agent.agent:_on_tracks:34 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 received 1 tracks for analysis
+2026-07-29 00:28:04.105 | DEBUG    | agents.behavior_agent.agent:_on_tracks:42 - [BEHAVIOR] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 0 behavior(s) flagged by analyzers
+2026-07-29 00:28:04.106 | DEBUG    | agents.behavior_agent.agent:_run_abd:104 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 feature_vec=[1, 0.0, 0.0, 0.0, 0.0] score=0.000
+2026-07-29 00:28:04.108 | DEBUG    | agents.behavior_agent.agent:_on_tracks:46 - [ABD] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 anomaly_score=0.000
+2026-07-29 00:28:04.118 | DEBUG    | agents.prediction_agent.agent:_on_behavior_state:24 - [THREAT_SCORE] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 {}
+2026-07-29 00:28:04.230 | DEBUG    | ai_engine.vision.stream_manager:_persist_classroom_metric:380 - [CLASSROOM] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 present=1/30 sleeping=0 talking=0 attention_index=60.8
+2026-07-29 00:28:04.583 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=1a32cb23-0820-4385-9ab5-de8e472e2c04 frame=123 detections=0 tracks=0
+2026-07-29 00:28:04.589 | DEBUG    | ai_engine.vision.stream_manager:_camera_loop:177 - [YOLO] camera=6cf7815f-009b-48e6-bf71-a7548a5e75b0 frame=183 detections=0 tracks=1
