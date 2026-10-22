@@ -19,16 +19,19 @@ secrets/
 .npmrc
 .pypirc
 
-# Private student identity data and local datasets
-/student_faces/
+# Authorized student assets; other local datasets remain excluded
+/student_faces/*
+!/student_faces/*.jpg
 /student_qr/*
 !/student_qr/*.png
 !/student_qr/student_qr_public.csv
+!/student_qr/student_qr_list.csv
 student_face_list.*
 *.xlsx
 *.xls
 *.xlsm
 *.ods
+!/student_face_list.xlsx
 datasets/
 private_data/
 private-data/
