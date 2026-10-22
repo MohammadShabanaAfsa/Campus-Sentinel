@@ -1,0 +1,119 @@
+groups:
+  - name: campus_sentinel_alerts
+    interval: 30s
+    rules:
+
+      # ── Backend health ─────────────────────────────────────────────────────
+      - alert: BackendDown
+        expr: up{job="campus-sentinel-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: backend
+        annotations:
+          summary: "Campus Sentinel backend is down"
+          description: "The FastAPI backend has been unreachable for > 1 minute."
+
+      # ── High error rate ────────────────────────────────────────────────────
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(http_requests_total{status=~"5.."}[5m]))
+          / sum(rate(http_requests_total[5m])) > 0.05
+        for: 2m
+        labels:
+          severity: high
+          component: api
+        annotations:
+          summary: "API error rate > 5%"
+          description: "More than 5% of HTTP requests are returning 5xx errors."
+
+      # ── High API latency ──────────────────────────────────────────────────
+      - alert: HighApiLatency
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (le)
+          ) > 2.0
+        for: 5m
+        labels:
+          severity: medium
+          component: api
+        annotations:
+          summary: "API p95 latency > 2s"
+          description: "95th percentile API response time exceeds 2 seconds."
+
+      # ── Redis down ────────────────────────────────────────────────────────
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          component: redis
+        annotations:
+          summary: "Redis is down"
+          description: "Redis is unreachable — WebSocket broadcasting and caching will fail."
+
+      # ── PostgreSQL down ───────────────────────────────────────────────────
+      - alert: PostgreSQLDown
+        expr: up{job="postgres"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          component: database
+        annotations:
+          summary: "PostgreSQL / TimescaleDB is down"
+          description: "The primary database is unreachable."
+
+      # ── Celery queue depth ────────────────────────────────────────────────
+      - alert: CeleryQueueBacklog
+        expr: celery_queue_length{queue="ai_tasks"} > 100
+        for: 3m
+        labels:
+          severity: high
+          component: celery
+        annotations:
+          summary: "Celery ai_tasks queue backlog > 100"
+          description: "AI tasks are accumulating — workers may be overloaded."
+
+      # ── Disk space ────────────────────────────────────────────────────────
+      - alert: LowDiskSpace
+        expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.10
+        for: 5m
+        labels:
+          severity: high
+          component: infrastructure
+        annotations:
+          summary: "Disk space below 10%"
+          description: "Available disk space is critically low on {{ $labels.instance }}."
+
+      # ── CPU overload ──────────────────────────────────────────────────────
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+        for: 5m
+        labels:
+          severity: medium
+          component: infrastructure
+        annotations:
+          summary: "CPU usage > 85%"
+          description: "High CPU usage on {{ $labels.instance }} — may impact stream processing."
+
+      # ── Memory pressure ───────────────────────────────────────────────────
+      - alert: HighMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.90
+        for: 5m
+        labels:
+          severity: high
+          component: infrastructure
+        annotations:
+          summary: "Memory usage > 90%"
+          description: "The system is under severe memory pressure."
+
+      # ── Camera stream stalled ─────────────────────────────────────────────
+      - alert: CameraStreamStalled
+        expr: time() - campus_sentinel_camera_last_frame_ts > 120
+        for: 2m
+        labels:
+          severity: medium
+          component: camera
+        annotations:
+          summary: "Camera stream stalled"
+          description: "Camera {{ $labels.camera_id }} has not produced a frame in > 2 minutes."

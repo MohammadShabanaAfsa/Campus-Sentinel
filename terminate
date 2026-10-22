@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Stops what ./run started: frontend, backend, Celery worker.
+# Postgres/Redis (Docker) are left running — they're persistent infra, not
+# per-session processes; stop them explicitly with `docker compose stop
+# postgres redis` if you want them down too.
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PIDDIR="$PROJ/.pids"
+
+echo "Stopping Campus Sentinel..."
+
+for name in frontend backend celery; do
+  PIDFILE="$PIDDIR/$name.pid"
+  if [ -f "$PIDFILE" ]; then
+    PID=$(cat "$PIDFILE")
+    if kill "$PID" 2>/dev/null; then
+      echo "  Stopped $name (PID $PID)"
+    fi
+    rm -f "$PIDFILE"
+  fi
+done
+
+# Sweep by command line in case a PID file was stale or the process was
+# started outside ./run (e.g. a leftover `next dev` from a previous session).
+pkill -f "uvicorn app.main:app" 2>/dev/null && echo "  Swept: uvicorn"
+pkill -f "celery -A app.core.celery_app" 2>/dev/null && echo "  Swept: celery"
+pkill -f "next dev" 2>/dev/null && echo "  Swept: next dev"
+pkill -f "next-server" 2>/dev/null && echo "  Swept: next-server"
+pkill -f "next start" 2>/dev/null && echo "  Swept: next start"
+
+echo "Done. Postgres/Redis left running (docker compose stop postgres redis to stop them too)."

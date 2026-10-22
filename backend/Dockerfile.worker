@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 \
+    ffmpeg curl build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY backend/requirements.txt .
+RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
+
+COPY backend/ .
+COPY ai-engine/ /ai_engine/
+COPY agents/ /agents/
+ENV PYTHONPATH=/:/app
+
+

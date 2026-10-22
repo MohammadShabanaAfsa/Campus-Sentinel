@@ -1,0 +1,125 @@
+{
+  "title": "Campus Sentinel — System Overview",
+  "uid": "campus-sentinel-overview",
+  "version": 1,
+  "schemaVersion": 38,
+  "tags": ["campus-sentinel", "surveillance"],
+  "timezone": "browser",
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "API Request Rate",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{
+        "expr": "sum(rate(http_requests_total[1m])) by (status)",
+        "legendFormat": "HTTP {{status}}"
+      }],
+      "fieldConfig": {
+        "defaults": {"unit": "reqps", "color": {"mode": "palette-classic"}},
+        "overrides": [{"matcher": {"id": "byRegexp", "options": "5.."}, "properties": [{"id": "color", "value": {"fixedColor": "red", "mode": "fixed"}}]}]
+      }
+    },
+    {
+      "id": 2,
+      "title": "API p95 Latency",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{
+        "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, handler))",
+        "legendFormat": "p95 {{handler}}"
+      }],
+      "fieldConfig": {"defaults": {"unit": "s", "custom": {"fillOpacity": 10}}}
+    },
+    {
+      "id": 3,
+      "title": "Active Alerts",
+      "type": "stat",
+      "gridPos": {"h": 4, "w": 4, "x": 0, "y": 8},
+      "targets": [{"expr": "campus_sentinel_active_alerts", "legendFormat": "Active"}],
+      "fieldConfig": {"defaults": {"unit": "short", "thresholds": {"steps": [
+        {"color": "green", "value": 0}, {"color": "yellow", "value": 5}, {"color": "red", "value": 20}
+      ]}}}
+    },
+    {
+      "id": 4,
+      "title": "Campus Safety Index",
+      "type": "gauge",
+      "gridPos": {"h": 4, "w": 4, "x": 4, "y": 8},
+      "targets": [{"expr": "campus_sentinel_csi_score", "legendFormat": "CSI"}],
+      "fieldConfig": {"defaults": {"unit": "short", "min": 0, "max": 100, "thresholds": {"steps": [
+        {"color": "red", "value": 0}, {"color": "yellow", "value": 50}, {"color": "green", "value": 75}
+      ]}}}
+    },
+    {
+      "id": 5,
+      "title": "Active Camera Streams",
+      "type": "stat",
+      "gridPos": {"h": 4, "w": 4, "x": 8, "y": 8},
+      "targets": [{"expr": "campus_sentinel_active_streams", "legendFormat": "Streams"}],
+      "fieldConfig": {"defaults": {"unit": "short", "color": {"mode": "fixed", "fixedColor": "blue"}}}
+    },
+    {
+      "id": 6,
+      "title": "Detections / Second",
+      "type": "stat",
+      "gridPos": {"h": 4, "w": 4, "x": 12, "y": 8},
+      "targets": [{"expr": "rate(campus_sentinel_detections_total[1m])", "legendFormat": "Det/s"}],
+      "fieldConfig": {"defaults": {"unit": "reqps"}}
+    },
+    {
+      "id": 7,
+      "title": "WebSocket Connections",
+      "type": "stat",
+      "gridPos": {"h": 4, "w": 4, "x": 16, "y": 8},
+      "targets": [{"expr": "campus_sentinel_ws_connections", "legendFormat": "Connections"}],
+      "fieldConfig": {"defaults": {"unit": "short", "color": {"mode": "fixed", "fixedColor": "purple"}}}
+    },
+    {
+      "id": 8,
+      "title": "Redis Memory Usage",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 12},
+      "targets": [{"expr": "redis_memory_used_bytes", "legendFormat": "Used"}],
+      "fieldConfig": {"defaults": {"unit": "bytes"}}
+    },
+    {
+      "id": 9,
+      "title": "Celery Queue Depths",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 12},
+      "targets": [
+        {"expr": "celery_queue_length{queue=\"ai_tasks\"}", "legendFormat": "ai_tasks"},
+        {"expr": "celery_queue_length{queue=\"alerts\"}", "legendFormat": "alerts"},
+        {"expr": "celery_queue_length{queue=\"analytics\"}", "legendFormat": "analytics"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "short"}}
+    },
+    {
+      "id": 10,
+      "title": "CPU Usage by Container",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 12},
+      "targets": [{"expr": "rate(container_cpu_usage_seconds_total[1m]) * 100", "legendFormat": "{{name}}"}],
+      "fieldConfig": {"defaults": {"unit": "percent"}}
+    },
+    {
+      "id": 11,
+      "title": "Behavior Events by Type (last 1h)",
+      "type": "piechart",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 20},
+      "targets": [{"expr": "sum(campus_sentinel_behavior_events_total[1h]) by (behavior_type)", "legendFormat": "{{behavior_type}}"}],
+      "fieldConfig": {"defaults": {"unit": "short"}}
+    },
+    {
+      "id": 12,
+      "title": "Alert Severity Distribution (last 24h)",
+      "type": "piechart",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 20},
+      "targets": [{"expr": "sum(increase(campus_sentinel_alerts_total[24h])) by (severity)", "legendFormat": "{{severity}}"}]
+    }
+  ],
+  "time": {"from": "now-6h", "to": "now"},
+  "timepicker": {}
+}

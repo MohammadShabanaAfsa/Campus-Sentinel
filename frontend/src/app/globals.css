@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: #0a0e1a;
+  }
+}
+
+/* Camera feed overlay */
+.camera-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+/* Severity badge colors */
+.badge-critical { @apply bg-purple-600 text-white; }
+.badge-high     { @apply bg-red-600 text-white; }
+.badge-medium   { @apply bg-amber-500 text-white; }
+.badge-low      { @apply bg-green-600 text-white; }
+
+/* CSI gauge */
+.csi-safe      { color: #22c55e; }
+.csi-moderate  { color: #f59e0b; }
+.csi-high_risk { color: #ef4444; }
+.csi-critical  { color: #7c3aed; }
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #1a1f2e; }
+::-webkit-scrollbar-thumb { background: #2a3042; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4055; }
+
+/* Alert pulse animation */
+.alert-pulse { animation: pulse_alert 1.5s ease-in-out infinite; }

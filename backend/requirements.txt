@@ -1,0 +1,71 @@
+# ─── Web Framework ───────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+websockets==12.0
+python-multipart==0.0.9
+httpx==0.27.0
+
+# ─── Database ────────────────────────────────────────────────────
+sqlalchemy==2.0.30
+alembic==1.13.1
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# ─── Cache / Queue ───────────────────────────────────────────────
+redis==5.0.4
+celery==5.4.0
+flower==2.0.1
+
+# ─── Auth / Security ─────────────────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-dotenv==1.0.1
+
+# ─── Config / Validation ─────────────────────────────────────────
+pydantic==2.7.1
+pydantic-settings==2.3.0
+email-validator==2.1.1
+
+# ─── Computer Vision ─────────────────────────────────────────────
+ultralytics==8.2.18
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+Pillow==10.3.0
+
+# ─── Classroom Monitoring (Face Mesh / Pose) ─────────────────────
+# Pinned to 0.10.14 (pre-Tasks-API) which keeps the self-contained
+# mediapipe.solutions.{face_mesh,pose} interface — no external .task
+# model-bundle downloads needed at runtime. Installed with --no-deps
+# to avoid opencv-contrib-python/numpy2 clobbering the pins above.
+mediapipe==0.10.14
+protobuf>=4.25.3,<5
+attrs>=19.1.0
+
+# ─── Deep Learning ───────────────────────────────────────────────
+torch==2.3.0
+torchvision==0.18.0
+
+# ─── ML / Analytics ──────────────────────────────────────────────
+scikit-learn==1.5.0
+scipy==1.13.0
+pandas==2.2.2
+
+# ─── Explainability ──────────────────────────────────────────────
+shap==0.45.1
+lime==0.2.0.1
+
+# ─── Monitoring ──────────────────────────────────────────────────
+prometheus-client==0.20.0
+prometheus-fastapi-instrumentator==7.0.0
+
+# ─── Email ───────────────────────────────────────────────────────
+fastapi-mail==1.4.1
+
+# ─── Utilities ───────────────────────────────────────────────────
+python-dateutil==2.9.0
+pytz==2024.1
+loguru==0.7.2
+tenacity==8.3.0
+aiofiles==23.2.1
+openpyxl==3.1.5
