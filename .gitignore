@@ -21,7 +21,9 @@ secrets/
 
 # Private student identity data and local datasets
 /student_faces/
-/student_qr/
+/student_qr/*
+!/student_qr/*.png
+!/student_qr/student_qr_public.csv
 student_face_list.*
 *.xlsx
 *.xls
