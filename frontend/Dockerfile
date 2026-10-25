@@ -4,8 +4,7 @@ WORKDIR /app
 RUN npm install -g npm@11.6.2
 
 COPY package.json package-lock.json ./
-RUN npm ci
-
+RUN npm install --include=optional
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
